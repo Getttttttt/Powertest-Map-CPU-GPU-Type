@@ -1,4 +1,11 @@
 # Powertest
+
+## 2024.04.29 Update for mapping type of CPU or GPU
+
+This repo is appliable for x86, if you are searching for the arm test version, you could click link here[] to access Arm version.
+
+The previous version is here[https://github.com/Zhou1993napolun/Powertest].
+
 ## What is Powertest for？
 
 We need to detect the utilization rate of CPU, GPU and RAM, and then calculate the energy consumption of the device according to the relevant formula, which can be used for the detection of the model.

@@ -190,8 +190,8 @@ def query_GPU_Average_Usage(address, start_time, end_time):
 
 def fuzzy_search_power(model_type ,model_name ):
     if model_type == 'cpu':
-        file_path = './CPUPower'
-    else:file_path = './GPUPower'
+        file_path = './CPUPowerDict.csv'
+    else:file_path = './GPUPowerDict.csv'
     matched_powers = []  # 存储匹配到的功率值
     # 将输入的cpu_model字符串转换为一个用于模糊匹配的正则表达式模式
     # 为了提高匹配的灵活性，词之间添加.*匹配任意字符
@@ -208,8 +208,10 @@ def fuzzy_search_power(model_type ,model_name ):
         if model_type == 'cpu': matched_powers = 120  
         else:  matched_powers = 250
     else: 
-        matched_powers = matched_powers[0]
-    return matched_powers
+        matched_power = matched_powers[0]
+        if model_type == 'cpu':
+            matched_power = matched_power.split(' ')[0]
+    return matched_power
     
 def query_total_energy(prometheus_server_address, start_time, end_time):
     query_expression1 = '100 - (avg by (instance) (irate(node_cpu_seconds_total{{mode="idle"}}[{}s]))) * 100'.format(end_time - start_time)
